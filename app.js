@@ -1,4 +1,3 @@
-
 require('./db');
 require('./auth');
 
@@ -6,9 +5,17 @@ const passport = require('passport');
 const express = require('express');
 const path = require('path');
 
-const routes = require('./routes/index');
-const list = require('./routes/list');
-const listItem = require('./routes/list-item');
+/**
+ * Still unsure about how I will use routes
+ *
+ * const routes = require('./routes/index');
+ * const words = require('./routes/words');
+ * const game = require('./routes/game');
+ */
+
+// const routes = require('./routes/index');
+// const list = require('./routes/list');
+// const listItem = require('./routes/list-item');
 
 const app = express();
 
@@ -38,13 +45,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // make user data available to all templates
-app.use((req, res, next) => {
-  res.locals.user = req.user;
-  next();
-});
+// app.use((req, res, next) => {
+//   res.locals.user = req.user;
+//   next();
+// });
 
-app.use('/', routes);
-app.use('/list', list);
-app.use('/list-item', listItem);
+// app.use('/', routes);
+// app.use('/list', list);
+// app.use('/list-item', listItem);
 
 app.listen(3000);
