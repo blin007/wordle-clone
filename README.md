@@ -103,8 +103,6 @@ Subject to change
 
 ## [Link to Initial Main Project File](app.js) 
 
-(__TODO__: create a skeleton Express application with a package.json, app.js, views folder, etc. ... and link to your initial app.js_)
-
 ## Annotations / References Used
 
 As the project goes on I will likely add and remove items from this list
