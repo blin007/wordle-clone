@@ -12,9 +12,14 @@ const listItem = require('./routes/list-item');
 
 const app = express();
 
+/**
+ * Since I plan on using React as a front end framework I'm not sure what to do with handlebars templating, my best
+ * assumption is that I should not use handlebars if I am using React
+ */
+
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+// app.set('view engine', 'hbs');
 
 // enable sessions
 const session = require('express-session');

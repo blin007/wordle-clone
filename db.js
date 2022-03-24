@@ -4,31 +4,43 @@ const mongoose = require('mongoose'),
 
 
 const User = new mongoose.Schema({
-  // username, password
-  lists:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }]
+  // username, password will be added to schema by passport local mongoose
+  words:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Word' }]
 });
 
-const Item = new mongoose.Schema({
-	name: {type: String, required: true},
-	quantity: {type: Number, min: 1, required: true},
-	checked: {type: Boolean, default: false, required: true}
-}, {
-	_id: true
-});
+// const Item = new mongoose.Schema({
+// 	name: {type: String, required: true},
+// 	quantity: {type: Number, min: 1, required: true},
+// 	checked: {type: Boolean, default: false, required: true}
+// }, {
+// 	_id: true
+// });
 
-
-const List = new mongoose.Schema({
+//word schema for wordle-like game
+const Word = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
-  name: {type: String, required: true},
+  text: {type: String, required: true, minLength: 5},
+	appear: {type: Number, required: true},
 	createdAt: {type: Date, required: true},
-	items: [Item]
 });
 
+/**
+ * word schema for flashcard-game
+ *
+ * const Word = new mongoose.Schema({
+ *   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
+ *   text: {type: String, required: true},
+ *   def: {type: String, required: true},
+ * 	createdAt: {type: Date, required: true},
+ * 	appear: {type: Number, required: true},
+ * });
+ *
+ */
 
 User.plugin(passportLocalMongoose);
-List.plugin(URLSlugs('name'));
+Word.plugin(URLSlugs('name'));
 
 mongoose.model('User', User);
-mongoose.model('List', List);
-mongoose.model('Item', Item);
+mongoose.model('Word', Word);
+// mongoose.model('Item', Item);
 mongoose.connect('mongodb://localhost/grocerydb');
