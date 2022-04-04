@@ -2,6 +2,11 @@ The content below is an example project proposal / requirements document. Replac
 
 # Guess the Word
 
+## FOR MILESTONE 2
+### PROJECT STRUCTURE
+
+![projectstructure](documentation/word%20app%20project%20structure.png)
+
 ## Overview
 
 Yep, you guessed it (haha get it?), the main focus of my project is a word guessing game. However, I am still unsure as to what the specifics are. Currently, I am thinking of two possibilities.
@@ -32,10 +37,7 @@ An Example Word (in a Wordle-like game):
 ```javascript
 {
   user: // a reference to a User object only filled if it is a user-added word, otherwise will be filled with 'default',
-  id: 1,
   text: "VIVID",
-  appear: 0, //number of times the word has been used in the game
-  addedAt: // timestamp
 }
 ```
 
@@ -44,16 +46,13 @@ An Example Word (in a flash-card-like game):
 ```javascript
 {
   user: // a reference to a User object only filled if it is a user-added word, otherwise will be filled with 'default',
-  id: 1,
   text: "VIVID",
   def: 'producing powerful feelings or strong, clear images in the mind', //definition of the word
-  appear: 0, //number of times the word has been used in the game
-  addedAt: // timestamp
 }
 ```
 
 
-## [Link to Commented First Draft Schema](db.js)
+## [Link to Commented First Draft Schema](backend/config/db.js)
 
 ## Wireframes
 
@@ -84,8 +83,8 @@ An Example Word (in a flash-card-like game):
 1. as non-registered user, I can register a new account with the site
 2. as a user, I can log in to the site
 3. as a user, I can add words to the game
-4. as a user, I can view all the words that can be used in the game
-5. as a user, I can play the game
+4. as a user or nonuser, I can view all the words that can be used in the game
+5. as a user or nonuser, I can play the game
 
 ## Research Topics
 
@@ -101,7 +100,7 @@ Subject to change
 12 points total out of 8 required points
 
 
-## [Link to Initial Main Project File](app.js) 
+## [Link to Initial Main Project File](backend/server.js) 
 
 ## Annotations / References Used
 
@@ -110,4 +109,5 @@ As the project goes on I will likely add and remove items from this list
 1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
 2. [reactjs tutorial](https://www.youtube.com/watch?v=w7ejDZ8SWv8) - (add link to source code that was based on this)
 3. [connecting react to express backend](https://www.youtube.com/watch?v=kJA9rDX7azM) - (add link to source code that was based on this)
+4. [deploying with heroku](https://www.youtube.com/watch?v=V-JKY1zJMt0)
 
