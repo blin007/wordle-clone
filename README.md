@@ -2,7 +2,7 @@ The content below is an example project proposal / requirements document. Replac
 
 # Guess the Word
 
-## FOR MILESTONE 2
+## FOR MILESTONE 2: ![heroku deployment](https://wordgame-app.herokuapp.com/)
 ### PROJECT STRUCTURE
 
 ![projectstructure](documentation/word%20app%20project%20structure.png)
@@ -110,4 +110,5 @@ As the project goes on I will likely add and remove items from this list
 2. [reactjs tutorial](https://www.youtube.com/watch?v=w7ejDZ8SWv8) - (add link to source code that was based on this)
 3. [connecting react to express backend](https://www.youtube.com/watch?v=kJA9rDX7azM) - (add link to source code that was based on this)
 4. [deploying with heroku](https://www.youtube.com/watch?v=5PaUiPyBDJY&t=747s) - (add link to source code that was based on this)
+   1. 
 
