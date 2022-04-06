@@ -3,7 +3,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Header from "./components/Header";
-// import Words from "./pages/Words";
+import Words from "./pages/Words";
 
 /**
  * TODO: redirect routing after registration to login page, and then from login to wordlist if successful login
@@ -18,7 +18,7 @@ const App = () => {
               <Route path='/' element={<Dashboard/>}/>
               <Route path='/login' element={<Login/>}/>
               <Route path='/register' element={<Register/>}/>
-              {/*<Route path='/wordlist' element={<Words/>}/>*/}
+              <Route path='/wordlist' element={<Words/>}/>
             </Routes>
           </div>
         </Router>

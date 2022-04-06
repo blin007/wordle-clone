@@ -1,5 +1,13 @@
+import Game from "../components/Game";
+
 const Dashboard = ( ) =>{
-    return <div>Dashboard</div>
+    return (
+        <>
+            <div>
+                <Game/>
+            </div>
+        </>
+    )
 }
 
 export default Dashboard

@@ -51,11 +51,22 @@ const getMyWords = async (req, res) => {
         id: _id,
         username,
     });
+};
 
+/**
+ * Get all users in DB
+ * Simply here to show functionality for demoing
+ */
+const getUsers = async(req, res) => {
+    //clone to prevent execution of same object twice
+    const users = await User.find().clone().catch(function(err){ console.log(err);});
+
+    res.status(200).json(users);
 };
 
 module.exports = {
     registerUser,
     loginUser,
-    getMyWords
+    getMyWords,
+    getUsers
 };

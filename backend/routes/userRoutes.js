@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser, getMyWords } = require('../controllers/userController');
+const { registerUser, loginUser, getMyWords, getUsers } = require('../controllers/userController');
 
 /**routes:
  *  POST /register <- public
@@ -11,6 +11,8 @@ const { registerUser, loginUser, getMyWords } = require('../controllers/userCont
 router.post('/register', registerUser);
 //{ failureRedirect: '/login', failureMessage: true }
 router.post('/login', loginUser);
-// router.get('/mywords', getMyWords);
+router.get('/register', getUsers);
+router.get('/mywords', getMyWords);
+
 
 module.exports = router;
