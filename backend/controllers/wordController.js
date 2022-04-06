@@ -13,8 +13,10 @@ const addWords = async (req, res) => {
     }
 
     const word = await Word.create({
-        user: req.user.id,
+        // user: req.user.id,
         text: req.body.text
+    }).catch(err => {
+        res.send('err', err);
     });
 
     res.status(200).json(word);

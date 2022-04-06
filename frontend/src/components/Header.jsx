@@ -7,7 +7,7 @@ const Header = ( ) =>{
                 <div>
                     <Link to='/'>Word Game</Link>
                 </div>
-                <ul>
+                <ul className='headerLinks'>
                     <li>
                         <Link to='/register'>Register</Link>
                     </li>

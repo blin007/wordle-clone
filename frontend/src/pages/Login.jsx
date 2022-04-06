@@ -8,6 +8,8 @@ const Login = ( ) =>{
         password: '',
     });
 
+    const [loginStatus, setLoginStatus] = useState('');
+
     const { username, password} = formData;
 
     const onChange =(e) =>{
@@ -31,7 +33,9 @@ const Login = ( ) =>{
             },
             withCredentials: true,
             url: LOGIN_URL,
-        }).then((res) => {console.log(res)});
+        }).then((res) => {
+            setLoginStatus(res.data);
+        });
     }
 
     return (
@@ -52,6 +56,7 @@ const Login = ( ) =>{
                         value={password}
                         onChange={onChange}/>
                     <button type='submit'>Submit</button>
+                    <p>{loginStatus}</p>
                 </form>
             </div>
         </>

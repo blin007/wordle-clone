@@ -42,7 +42,9 @@ const userRoutes = require('./routes/userRoutes');
 // /users/register ... /users/login ... /users/mywords
 app.use('/users', userRoutes);
 
-//will also have wordRoutes for /word/list and /word/add
+//will also have wordRoutes for /words/list and /words/add
+const wordRoutes = require('./routes/wordRoutes');
+app.use('/words', wordRoutes);
 
 //home route '/' will just direct to the game
 

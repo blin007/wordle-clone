@@ -29,9 +29,10 @@ const Register = ( ) =>{
         }).then((res) => {
             //get all usernames from the response object
             const users = res.data.map(ele => {
-                return ele.username + ' ';
+                return ele.username;
             })
-            console.log(users)
+            // console.log(users)
+            console.log(res.data);
             setUsersInDB(users)
         });
     }
@@ -75,7 +76,11 @@ const Register = ( ) =>{
                     <button type='submit'>Get All Users</button>
                 </form>
                 <h3>All users in DB</h3>
-                <p>{usersinDB}</p>
+                <ul className='userList'>
+                    {usersinDB.map(user => (
+                        <li>{user}</li>
+                    ))}
+                </ul>
             </div>
         </>
     )

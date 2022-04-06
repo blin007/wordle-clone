@@ -64,6 +64,15 @@
   justify-content: center;
 }
 
-.getUserForm {
+.getUserForm, .getWordForm {
   padding: 10px;
+}
+
+.headerLinks{
+  list-style: none;
+}
+
+.userList, .wordList {
+  list-style: none;
+  text-align: center;
 }
