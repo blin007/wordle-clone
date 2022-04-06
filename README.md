@@ -2,7 +2,7 @@ The content below is an example project proposal / requirements document. Replac
 
 # Guess the Word
 
-## FOR MILESTONE 2: ![heroku deployment](https://wordgame-app.herokuapp.com/)
+## FOR MILESTONE 2: [heroku deployment](https://wordgame-app.herokuapp.com/)
 ### PROJECT STRUCTURE
 
 ![projectstructure](documentation/word%20app%20project%20structure.png)
