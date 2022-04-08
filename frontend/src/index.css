@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /*body {*/
 /*  margin: 0;*/
 /*  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',*/
@@ -16,63 +20,63 @@
   Some temporary styles until I implement either Tailwind or BootStrap
  */
 
-.container {
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 20px;
-  text-align: center;
-}
+/*.container {*/
+/*  width: 100%;*/
+/*  max-width: 960px;*/
+/*  margin: 0 auto;*/
+/*  padding: 0 20px;*/
+/*  text-align: center;*/
+/*}*/
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 30px;
-}
+/*.header {*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*  align-items: center;*/
+/*  padding: 10px 0;*/
+/*  border-bottom: 1px solid #e6e6e6;*/
+/*  margin-bottom: 30px;*/
+/*}*/
 
-.header ul {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+/*.header ul {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: space-between;*/
+/*}*/
 
-.header ul li {
-  margin-left: 20px;
-}
+/*.header ul li {*/
+/*  margin-left: 20px;*/
+/*}*/
 
-.form,
-.content {
-  width: 70%;
-  margin: 0 auto;
-}
+/*.form,*/
+/*.content {*/
+/*  width: 70%;*/
+/*  margin: 0 auto;*/
+/*}*/
 
-.btn {
-  padding: 10px 20px;
-  border: 1px solid #000;
-  border-radius: 5px;
-  background: #000;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/*.btn {*/
+/*  padding: 10px 20px;*/
+/*  border: 1px solid #000;*/
+/*  border-radius: 5px;*/
+/*  background: #000;*/
+/*  color: #fff;*/
+/*  font-size: 16px;*/
+/*  font-weight: 700;*/
+/*  cursor: pointer;*/
+/*  text-align: center;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*}*/
 
-.getUserForm, .getWordForm {
-  padding: 10px;
-}
+/*.getUserForm, .getWordForm {*/
+/*  padding: 10px;*/
+/*}*/
 
-.headerLinks{
-  list-style: none;
-}
+/*.headerLinks{*/
+/*  list-style: none;*/
+/*}*/
 
-.userList, .wordList {
-  list-style: none;
-  text-align: center;
-}
+/*.userList, .wordList {*/
+/*  list-style: none;*/
+/*  text-align: center;*/
+/*}*/

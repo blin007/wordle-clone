@@ -6,12 +6,13 @@ const Words = () => {
     const GETWORD_URL = 'words/list';
     const [words, setWords] = useState([]);
     const [word, setWord] = useState('');
-    const [addWordMessage, setWordMessage] = useState('');
+    // const [wordMessage, setWordMessage] = useState('');
 
     const addWord = (e) => {
         e.preventDefault();
         if(word.length !== 5){
-            setWordMessage('Word must be 5 letters long!');
+            // setWordMessage('Word must be 5 letters long!');
+            alert('Word must be 5 letters long!');
         } else{
             axios({
                 method: 'POST',
@@ -45,6 +46,7 @@ const Words = () => {
             <h1>Add a 5 letter Word!</h1>
             <form onSubmit={addWord}>
                 <input
+                    className='border'
                     type='text'
                     placeholder='Enter word'
                     name='word'
@@ -52,7 +54,6 @@ const Words = () => {
                     onChange={e => setWord(e.target.value)}/>
                 <button type='submit'>Submit</button>
             </form>
-            <p>{addWordMessage}</p>
             <form onSubmit={getAllWords} className='getWordForm'>
                 <button type='submit'>Get Words From DB</button>
             </form>

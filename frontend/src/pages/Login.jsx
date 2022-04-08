@@ -44,12 +44,14 @@ const Login = ( ) =>{
                 <h1>Login</h1>
                 <form onSubmit={onSubmit}>
                     <input
+                        className='border'
                         type='text'
                         placeholder='Enter username'
                         name='username'
                         value={username}
                         onChange={onChange}/>
                     <input
+                        className='border'
                         type='password'
                         placeholder='Enter password'
                         name='password'
@@ -60,36 +62,6 @@ const Login = ( ) =>{
                 </form>
             </div>
         </>
-
-        // <>
-        //     <section className='heading'>
-        //         <h1>Login</h1>
-        //         <p> Please Login</p>
-        //     </section>
-        //
-        //     <section className='form'>
-        //         <form onSubmit={onSubmit}>
-        //             <input
-        //                 type='text'
-        //                 className='form-control'
-        //                 id='username'
-        //                 name='username'
-        //                 value={username}
-        //                 placeholder='Enter username'
-        //                 onChange={onChange}/>
-        //             <input
-        //                 type='password'
-        //                 className='form-control'
-        //                 id='password'
-        //                 name='password'
-        //                 value={password}
-        //                 placeholder='Enter password'
-        //                 onChange={onChange}/>
-        //             <button type='submit' className='btn btn-block'>Submit</button>
-        //
-        //         </form>
-        //     </section>
-        // </>
     )
 }
 

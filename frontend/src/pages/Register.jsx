@@ -58,12 +58,14 @@ const Register = ( ) =>{
                 <h1>Register</h1>
                 <form onSubmit={onSubmit}>
                     <input
+                        className='border'
                         type='text'
                         placeholder='Enter username'
                         name='username'
                         value={username}
                         onChange={onChange}/>
                     <input
+                        className='border'
                         type='password'
                         placeholder='Enter password'
                         name='password'

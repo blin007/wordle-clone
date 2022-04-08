@@ -47,6 +47,8 @@ const wordRoutes = require('./routes/wordRoutes');
 app.use('/words', wordRoutes);
 
 //home route '/' will just direct to the game
+const gameRoutes = require('./routes/gameRoutes');
+app.use('/', gameRoutes);
 
 //for deploying to heroku
 if (process.env.NODE_ENV === 'production'){
