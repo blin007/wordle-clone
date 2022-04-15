@@ -1,9 +1,12 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
+import BoardLogic from "./BoardLogic";
+
 
 const GameLogic = () => {
     const START_GAME_URL = '/game'
     const [correctWord, setCorrectWord] = useState('');
+    const [letter, setLetter] = useState('');
 
     //get the answer on startup
     useEffect(() => {
@@ -18,9 +21,12 @@ const GameLogic = () => {
 
 
     return (
-        <div>
-            Correct Answer: {correctWord}
-        </div>
+        <>
+            <div>
+                Correct Answer: {correctWord}
+            </div>
+            <BoardLogic/>
+        </>
     )
 }
 
