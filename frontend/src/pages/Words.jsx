@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const Words = () => {
@@ -6,12 +6,10 @@ const Words = () => {
     const GETWORD_URL = 'words/list';
     const [words, setWords] = useState([]);
     const [word, setWord] = useState('');
-    // const [wordMessage, setWordMessage] = useState('');
 
     const addWord = (e) => {
         e.preventDefault();
         if(word.length !== 5){
-            // setWordMessage('Word must be 5 letters long!');
             alert('Word must be 5 letters long!');
         } else{
             axios({

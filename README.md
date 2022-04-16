@@ -109,11 +109,17 @@ As the project goes on I will likely add and remove items from this list
 1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
 2. [reactjs tutorial](https://www.youtube.com/watch?v=w7ejDZ8SWv8) - (add link to source code that was based on this)
 3. [connecting react to express backend](https://www.youtube.com/watch?v=kJA9rDX7azM) - (add link to source code that was based on this)
+   1. [use of axios]()
+   2. [proxy in package.json file]()
 4. [deploying with heroku](https://www.youtube.com/watch?v=5PaUiPyBDJY&t=747s)
    1. [process.env.PORT](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/eaba0a8a53f6ff4cedb72676b7de789c552cf230/backend/server.js#L12)
    2. [process.env.MONGODB_URI](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/eaba0a8a53f6ff4cedb72676b7de789c552cf230/backend/config/db.js#L6)
    3. [process.env.SESSION_SECRET](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/eaba0a8a53f6ff4cedb72676b7de789c552cf230/backend/server.js#L31)
    4. [package.json scripts](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/eaba0a8a53f6ff4cedb72676b7de789c552cf230/package.json#L8-L10)
    5. [process.env.NODE_ENV](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/eaba0a8a53f6ff4cedb72676b7de789c552cf230/backend/server.js#L50-L56)
-5. 
+5. [reactjs useEffect hook](https://www.youtube.com/watch?v=0ZJgIjIuY7U&list=LL&index=4&t=666s)
+   1. [GameLogic.jsx window event listener]()
+   2. 
+6. [reactjs tailwind to create modal](https://www.youtube.com/watch?v=ZCvemsUfwPQ)
+   1. [EndGameModal.jsx]()
 

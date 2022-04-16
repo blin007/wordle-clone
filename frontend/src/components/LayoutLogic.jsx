@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import Layout from "./Layout";
+import EndGameModal from "./EndGameModal";
 
 //declare some global variables
 const letters = ['a','b','c','d','e','f','g','h','i','j','k',
@@ -41,7 +42,9 @@ const LayoutLogic = (props) => {
     //keep track of whether the game has complete or not
     const [win, setWin] = useState(false);
     const [lose, setLose] = useState(false);
-    const [end, setEnd] = useState('');
+    const [result, setResult] = useState('');
+    const [modalMessage, setModalMessage] = useState('');
+    const [openEndModal, setOpenEndModal] = useState(false);
 
     //error message
     const [error, setError] = useState('');
@@ -51,7 +54,7 @@ const LayoutLogic = (props) => {
 
     useEffect(()=> {
         if(win || lose){
-            if(win) console.log("You Won!")
+            if(win)console.log("You Won!");
             else console.log("You Lost! Correct answer was:", answer);
         }
         //if the player has not won or lost, then keep going
@@ -80,6 +83,7 @@ const LayoutLogic = (props) => {
                         setError('Word must be 5 letters!');
                         setVisible(true);
                     } else {
+                        console.log('row:',row);
                         const answerArr = answer.split('');
                         const wordArr = word.split('');
 
@@ -94,6 +98,11 @@ const LayoutLogic = (props) => {
                             setCol(0);
                             setWord("");
                             setWin(true);
+                            setTimeout(()=>{
+                                setResult('Congratulations!');
+                                setModalMessage(`You Won in ${row+1} ${(row+1) > 1 ? 'guesses' : 'guess'}!`);
+                                setOpenEndModal(true);
+                            },800);
                         } else {
                             for(let i = 0; i < wordArr.length; i++){
                                 if(wordArr[i] === answerArr[i]){
@@ -112,6 +121,14 @@ const LayoutLogic = (props) => {
                                         return board;
                                     })
                                 }
+                            }
+                            if(row === 5){
+                                setLose(true);
+                                setTimeout(()=>{
+                                    setResult('You Lost!');
+                                    setModalMessage(`Correct word was: ${answer}!`);
+                                    setOpenEndModal(true);
+                                },800);
                             }
                             console.log('board:', layout);
                             setRow(row + 1);
@@ -139,6 +156,8 @@ const LayoutLogic = (props) => {
 
     return (
         <>
+            {/*open the endgame modal only if openEndModal is set to true*/}
+            {openEndModal && <EndGameModal result={result} message={modalMessage} close={setOpenEndModal}/>}
             <div className="grid gap-1 w-full justify-center">
                 {layout.map((row, key) => {
                     return (
@@ -154,6 +173,8 @@ const LayoutLogic = (props) => {
             <div className={`text-center text-bold text-3xl p-2 ${visible ? 'visible' : 'invisible'}`}>
                 {error}
             </div>
+
+
         </>
     )
 }

@@ -49,11 +49,6 @@ const GameLogic = () => {
 
     return (
         <>
-            {/*<div>*/}
-            {/*    Correct Answer: {correctWord}*/}
-            {/*    /!*Key Input: {letter}*!/*/}
-            {/*    /!*Key Presses: {keyPress}*!/*/}
-            {/*</div>*/}
             <LayoutLogic letter={letter} answer={correctWord} keyPress={keyPress}/>
         </>
     )
