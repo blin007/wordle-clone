@@ -7,7 +7,7 @@ const Header = ( ) =>{
                 <div className='ml-10 hover:text-cyan-600'>
                     <Link to='/' >Word Game</Link>
                 </div>
-                <h1 className='ml-32 text-2xl font-bold tracking-wider'> GAME </h1>
+                <h1 className='ml-32 text-3xl font-bold tracking-wider'> GAME </h1>
                 <ul className='flex items-center justify-evenly mr-10'>
                     <li className='ml-5 hover:text-cyan-600'>
                         <Link to='/register'>Register</Link>

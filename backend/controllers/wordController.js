@@ -25,11 +25,20 @@ const addWords = async (req, res) => {
             res.send('already exists');
         }
     });
-
 };
 
+const delWord = async (req, res) => {
+    // if(!req.body.text){
+    //     res.status(400);
+    //     throw new Error('Something went wrong');
+    // }
+
+    const deletedWord = await Word.deleteOne({text: req.body.text});
+    res.status(200).json(deletedWord);
+};
 
 module.exports = {
     getWords,
-    addWords
+    addWords,
+    delWord
 };
