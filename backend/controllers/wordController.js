@@ -11,15 +11,21 @@ const addWords = async (req, res) => {
         res.status(400);
         throw new Error('Please add text');
     }
+    Word.countDocuments({text: req.body.text}, async (err, count) => {
+        if (count === 0) {
+            const word = await Word.create({
+                // user: req.user.id,
+                text: req.body.text
+            }).catch(err => {
+                res.send('err', err);
+            });
 
-    const word = await Word.create({
-        // user: req.user.id,
-        text: req.body.text
-    }).catch(err => {
-        res.send('err', err);
+            res.status(200).json(word);
+        } else {
+            res.send('already exists');
+        }
     });
 
-    res.status(200).json(word);
 };
 
 

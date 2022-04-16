@@ -19,8 +19,11 @@ const Words = () => {
                 },
                 url: ADDWORD_URL,
             }).then((res) => {
-                console.log('in axios post add word')
-                console.log(res);
+                // console.log('in axios post add word')
+                // console.log(res.data);
+                if(res.data === 'already exists'){
+                    alert('Word already in game, try another one');
+                }
             })
         }
     }
