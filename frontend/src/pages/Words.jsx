@@ -35,9 +35,6 @@ const Words = () => {
                 if(res.data === 'already exists'){
                     alert('Word already in game, try another one');
                 }
-                // console.log('is word a number? using parseint', isNaN(parseFloat(word)))
-                // console.log('is word a number? using (word-0)', isNaN(word - 0))
-                // console.log('is word a string using validate', validate(word));
                 //clear input field after submitting
                 setWord('');
                 //get all the words again
