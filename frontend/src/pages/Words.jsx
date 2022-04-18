@@ -8,11 +8,21 @@ const Words = () => {
     const [words, setWords] = useState([]);
     const [word, setWord] = useState('');
 
+    const validate = (input) => {
+        const reg = /^[a-z]+$/i;
+        return reg.test(input);
+    }
+
     const addWord = (e) => {
         e.preventDefault();
         if(word.length !== 5){
             alert('Word must be 5 letters long!');
-        } else{
+        }
+        //check if the input is a number
+        else if (!validate(word)) {
+            alert('Word cannot include numbers and symbols');
+        }
+        else{
             axios({
                 method: 'POST',
                 data: {
@@ -25,6 +35,9 @@ const Words = () => {
                 if(res.data === 'already exists'){
                     alert('Word already in game, try another one');
                 }
+                // console.log('is word a number? using parseint', isNaN(parseFloat(word)))
+                // console.log('is word a number? using (word-0)', isNaN(word - 0))
+                // console.log('is word a string using validate', validate(word));
                 //clear input field after submitting
                 setWord('');
                 //get all the words again
