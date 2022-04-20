@@ -33,8 +33,16 @@ const delWord = async (req, res) => {
     //     throw new Error('Something went wrong');
     // }
 
-    const deletedWord = await Word.deleteOne({text: req.body.text});
-    res.status(200).json(deletedWord);
+    Word.countDocuments({}, async(err,count) => {
+        if (count >= 10){
+            const deletedWord = await Word.deleteOne({text: req.body.text});
+            res.status(200).json(deletedWord);
+        } else{
+            res.send('less 10');
+        }
+
+    });
+
 };
 
 module.exports = {

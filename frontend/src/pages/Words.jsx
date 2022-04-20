@@ -58,6 +58,7 @@ const Words = () => {
         });
     }
 
+    //only remove words if there are more than 10 words in DB, if not then don't delete word
     const removeWord = (e, word) => {
         e.preventDefault();
         axios({
@@ -66,8 +67,11 @@ const Words = () => {
                 text: word,
             },
             url: DEL_WORD_URL,
-        }).then(()=> {
+        }).then((res)=> {
             //get all the words again
+            if(res.data === 'less 10'){
+                alert('Cannot remove words from game when there are less than 10 words in DB');
+            }
             getAllWords(e);
         });
     }
