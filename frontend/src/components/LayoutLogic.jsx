@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import Layout from "./Layout";
 import EndGameModal from "./EndGameModal";
+import WordOptions from "../wordOptions";
 
 //declare some global variables
 const letters = ['a','b','c','d','e','f','g','h','i','j','k',
@@ -38,6 +39,7 @@ const LayoutLogic = (props) => {
     const [col, setCol] = useState(0);
     //keep track of word created by each row
     let [word, setWord] = useState('');
+    const [start, setStart] = useState(false);
 
     //keep track of whether the game has complete or not
     const [win, setWin] = useState(false);
@@ -51,6 +53,14 @@ const LayoutLogic = (props) => {
     const [visible, setVisible] = useState(false);
 
     const answer = props.answer;
+    /**
+     *TODO in the case where user input has two letters that are the same but the correct word is only one of that letter,
+     * must only show green to the letter in correct place and red for the other letter
+     */
+
+    const validateWord = () => {
+        //check if letter is inplace so we don't
+    }
 
     useEffect(()=> {
         if(win || lose){
@@ -61,6 +71,8 @@ const LayoutLogic = (props) => {
         else {
             //check if the user has input anything
             if(props.keyPress > 0){
+                //bug that duplicates first letter
+                // setStart(true);
                 //check for the key input, whether it is a backspace, enter, or letter
                 if(props.letter === "Backspace"){
                     console.log('backspace pressed!')
@@ -79,7 +91,7 @@ const LayoutLogic = (props) => {
                     setVisible(false);
                 } else if (props.letter === "Enter"){
                     if (col < 5){
-                        console.log('Enter pressed when error')
+                        console.log('Word must be 5 letters!')
                         setError('Word must be 5 letters!');
                         setVisible(true);
                     } else {
@@ -87,53 +99,61 @@ const LayoutLogic = (props) => {
                         const answerArr = answer.split('');
                         const wordArr = word.split('');
 
-                        if (word === answer){
-                            for(let i=0; i < col; i++){
-                                setLayout((board) =>{
-                                    board[row][i][1] = 'Correct';
-                                    return board;
-                                })
-                            }
-                            setRow(row + 1);
-                            setCol(0);
-                            setWord("");
-                            setWin(true);
-                            setTimeout(()=>{
-                                setResult('Congratulations!');
-                                setModalMessage(`You Won in ${row+1} ${(row+1) > 1 ? 'guesses' : 'guess'}!`);
-                                setOpenEndModal(true);
-                            },800);
-                        } else {
-                            for(let i = 0; i < wordArr.length; i++){
-                                if(wordArr[i] === answerArr[i]){
-                                    setLayout((board) =>{
+                        //check if the word entered by user is present in the word list
+                        if(WordOptions.includes(word)) {
+                            if (word === answer) {
+                                for (let i = 0; i < col; i++) {
+                                    setLayout((board) => {
                                         board[row][i][1] = 'Correct';
                                         return board;
                                     })
-                                } else if (answerArr.includes(wordArr[i])){
-                                    setLayout((board) =>{
-                                        board[row][i][1] = 'Present';
-                                        return board;
-                                    })
-                                } else {
-                                    setLayout((board) =>{
-                                        board[row][i][1] = 'Wrong';
-                                        return board;
-                                    })
                                 }
-                            }
-                            if(row === 5){
-                                setLose(true);
-                                setTimeout(()=>{
-                                    setResult('You Lost!');
-                                    setModalMessage(`Correct word was: ${answer}!`);
+                                setRow(row + 1);
+                                setCol(0);
+                                setWord("");
+                                setWin(true);
+                                setTimeout(() => {
+                                    setResult('Congratulations!');
+                                    setModalMessage(`You Won in ${row + 1} ${(row + 1) > 1 ? 'guesses' : 'guess'}!`);
                                     setOpenEndModal(true);
-                                },800);
+                                }, 800);
+                            } else {
+                                for (let i = 0; i < wordArr.length; i++) {
+                                    if (wordArr[i] === answerArr[i]) {
+                                        setLayout((board) => {
+                                            board[row][i][1] = 'Correct';
+                                            return board;
+                                        })
+                                    } else if (answerArr.includes(wordArr[i])) {
+                                        setLayout((board) => {
+                                            board[row][i][1] = 'Present';
+                                            return board;
+                                        })
+                                    } else {
+                                        setLayout((board) => {
+                                            board[row][i][1] = 'Wrong';
+                                            return board;
+                                        })
+                                    }
+                                }
+                                if (row === 5) {
+                                    setLose(true);
+                                    setTimeout(() => {
+                                        setResult('You Lost!');
+                                        setModalMessage(`Correct word was: ${answer}!`);
+                                        setOpenEndModal(true);
+                                    }, 800);
+                                }
+                                console.log('board:', layout);
+                                setRow(row + 1);
+                                setCol(0);
+                                setWord("");
                             }
-                            console.log('board:', layout);
-                            setRow(row + 1);
-                            setCol(0);
-                            setWord("");
+                        }
+                        else {
+                            console.log('Word entered not in word list')
+                            setError('Word not in wordlist!');
+                            setVisible(true);
                         }
 
                     }

@@ -3,7 +3,7 @@ const EndGameModal = (props) => {
 
     return (
         //set the background
-        <div className='bg-gray-300 h-full w-full flex justify-center items-center'>
+        <div className='backdrop-blur-sm h-full w-full flex justify-center items-center'>
             {/*Modal container*/}
             <div className='bg-white w-96 h-96 flex flex-col rounded-lg shadow-xl mb-72 mt-12'>
                 {/*Display game result*/}

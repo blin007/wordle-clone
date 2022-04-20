@@ -14,6 +14,7 @@ const GameLogic = () => {
     const [keyPress, setKeyPress] = useState(0);
 
     //get the answer on startup
+    //answer can only come from a word that user has entered into the database
     useEffect(() => {
         axios({
             method: 'GET',
