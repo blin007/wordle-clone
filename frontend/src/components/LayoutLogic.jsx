@@ -217,7 +217,7 @@ const LayoutLogic = (props) => {
         <>
             {/*open the endgame modal only if openEndModal is set to true*/}
             {openEndModal && <EndGameModal result={result} message={modalMessage} close={setOpenEndModal}/>}
-            <div className="grid gap-1 w-full justify-center">
+            <div className="grid gap-1 w-full justify-center py-4">
                 {layout.map((row, key) => {
                     return (
                         <div className='flex gap-1 w-fit' key={key}>
