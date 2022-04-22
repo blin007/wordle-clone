@@ -7,6 +7,10 @@ const Words = () => {
     const DEL_WORD_URL = 'words/delete';
     const [words, setWords] = useState([]);
     const [word, setWord] = useState('');
+    const [error, setError] = useState(false);
+    const [message, setMessage] = useState('');
+    const [addErrorAnimation, setAddErrorAnimation] = useState('');
+    const [delErrorAnimation, setDelErrorAnimation] = useState('');
 
     const validate = (input) => {
         const reg = /^[a-z]+$/i;
@@ -16,11 +20,15 @@ const Words = () => {
     const addWord = (e) => {
         e.preventDefault();
         if(word.length !== 5){
-            alert('Word must be 5 letters long!');
+            setError(true);
+            setMessage('Word must be 5 letters long!');
+            setAddErrorAnimation('animate-shake');
         }
         //check if the input is a number
         else if (!validate(word)) {
-            alert('Word cannot include numbers and symbols');
+            setError(true);
+            setMessage('Word cannot include numbers and symbols');
+            setAddErrorAnimation('animate-shake');
         }
         else{
             axios({
@@ -30,10 +38,10 @@ const Words = () => {
                 },
                 url: ADD_WORD_URL,
             }).then((res) => {
-                // console.log('in axios post add word')
-                // console.log(res.data);
                 if(res.data === 'already exists'){
-                    alert('Word already in game, try another one');
+                    setError(true);
+                    setMessage('Word already in game, try another one');
+                    setAddErrorAnimation('animate-shake');
                 }
                 //clear input field after submitting
                 setWord('');
@@ -41,6 +49,12 @@ const Words = () => {
                 getAllWords(e);
             })
         }
+        setTimeout(()=> {
+            setError(false);
+            setMessage('');
+            setAddErrorAnimation('');
+        }, 2000);
+
     }
 
     const getAllWords = (e) => {
@@ -54,7 +68,6 @@ const Words = () => {
                 return word.text;
             })
             setWords(words);
-            // console.log(res.data);
         });
     }
 
@@ -70,10 +83,17 @@ const Words = () => {
         }).then((res)=> {
             //get all the words again
             if(res.data === 'less 10'){
-                alert('Cannot remove words from game when there are less than 10 words in DB');
+                setError(true);
+                setMessage('Cannot remove words when there are less than 10 in play!');
+                setDelErrorAnimation('animate-shake');
             }
             getAllWords(e);
         });
+        setTimeout(()=> {
+            setError(false);
+            setMessage('');
+            setDelErrorAnimation('');
+        }, 2500);
     }
 
     return (
@@ -89,14 +109,14 @@ const Words = () => {
                         value={word}
                         onChange={e => setWord(e.target.value)}/>
                     <button type='submit'
-                            className='m-2 border w-14 h-8 bg-blue-700 rounded-lg hover:shadow-lg hover:bg-blue-500'
+                            className= {`m-2 border w-14 h-8 bg-blue-700 rounded-lg hover:shadow-lg hover:bg-blue-500 ${addErrorAnimation}`}
                             >Add</button>
                 </form>
                 <form onSubmit={getAllWords}>
                     <button type='submit' className='m-2 border w-44 h-8 cursor-pointer bg-cyan-700 rounded-lg hover:shadow-lg hover:bg-cyan-400'>Get Words From DB</button>
                 </form>
             </div>
-
+            {error && <div className='flex justify-center items-center text-2xl font-bold'>{message}</div>}
             <table className='grid grid-cols-8 gap-2 mt-2'>
                 {words.map((word,key) => {
                     return (
@@ -106,7 +126,7 @@ const Words = () => {
                                     {/*pass in the word to delete*/}
                                     <form onSubmit={(e) => removeWord(e, word)} key={key}>
                                         {word}
-                                        <button className='text-2xl font-bold text-red-500 hover:text-red-900 hover:text-3xl ml-6'
+                                        <button className={`text-2xl font-bold text-red-500 hover:text-red-900 hover:text-3xl ml-6 ${delErrorAnimation}`}
                                                 type='submit'
                                                 key={key}>X</button>
                                     </form>

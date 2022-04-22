@@ -21,7 +21,7 @@ const GameLogic = () => {
             url: START_GAME_URL,
         }).then((res) => {
             setCorrectWord(res.data[0].text);
-            console.log(res);
+            // console.log(res);
         });
     }, [])
 

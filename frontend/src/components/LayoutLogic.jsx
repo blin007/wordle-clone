@@ -39,11 +39,9 @@ const LayoutLogic = (props) => {
     const [col, setCol] = useState(0);
     //keep track of word created by each row
     let [word, setWord] = useState('');
-    const [start, setStart] = useState(false);
 
     //keep track of whether the game has complete or not
-    const [win, setWin] = useState(false);
-    const [lose, setLose] = useState(false);
+    const [done, setDone] = useState(false);
     const [result, setResult] = useState('');
     const [modalMessage, setModalMessage] = useState('');
     const [openEndModal, setOpenEndModal] = useState(false);
@@ -53,29 +51,19 @@ const LayoutLogic = (props) => {
     const [visible, setVisible] = useState(false);
 
     const answer = props.answer;
-    /**
-     *TODO in the case where user input has two letters that are the same but the correct word is only one of that letter,
-     * must only show green to the letter in correct place and red for the other letter
-     */
 
-    const validateWord = () => {
-        //check if letter is inplace so we don't
+    //check if word has more than one of the same letter in it
+    const validateWord = (word, char) => {
+        let re = new RegExp(`(${char}).*\\1`);
+        return re.test(word);
     }
 
     useEffect(()=> {
-        if(win || lose){
-            if(win)console.log("You Won!");
-            else console.log("You Lost! Correct answer was:", answer);
-        }
-        //if the player has not won or lost, then keep going
-        else {
+        if(!done) {
             //check if the user has input anything
             if(props.keyPress > 0){
-                //bug that duplicates first letter
-                // setStart(true);
                 //check for the key input, whether it is a backspace, enter, or letter
                 if(props.letter === "Backspace"){
-                    console.log('backspace pressed!')
                     setLayout((board) => {
                         if(col === 0){
                             board[row][0][0]="";
@@ -91,11 +79,11 @@ const LayoutLogic = (props) => {
                     setVisible(false);
                 } else if (props.letter === "Enter"){
                     if (col < 5){
-                        console.log('Word must be 5 letters!')
+                        // console.log('Word must be 5 letters!')
                         setError('Word must be 5 letters!');
                         setVisible(true);
                     } else {
-                        console.log('row:',row);
+                        // console.log('row:',row);
                         const answerArr = answer.split('');
                         const wordArr = word.split('');
 
@@ -111,47 +99,98 @@ const LayoutLogic = (props) => {
                                 setRow(row + 1);
                                 setCol(0);
                                 setWord("");
-                                setWin(true);
+                                setDone(true);
                                 setTimeout(() => {
                                     setResult('Congratulations!');
                                     setModalMessage(`You Won in ${row + 1} ${(row + 1) > 1 ? 'guesses' : 'guess'}!`);
                                     setOpenEndModal(true);
-                                }, 800);
+                                }, 600);
                             } else {
                                 for (let i = 0; i < wordArr.length; i++) {
                                     if (wordArr[i] === answerArr[i]) {
+
                                         setLayout((board) => {
-                                            board[row][i][1] = 'Correct';
+                                            if(board[row][i][1] === ''){
+                                                board[row][i][1] = 'Correct';
+                                            }
                                             return board;
                                         })
                                     } else if (answerArr.includes(wordArr[i])) {
+                                        //we need to check if the word that the user input has more than one of the same letter, and
+                                        // whether the correct word has more than one of the same letter
+                                        // for instance, if the correct word is: REACH, which has one letter 'E' in it, and the user
+                                        // inputs a word: LEEKS, which has two letters 'E' in it. We want the first 'E' in LEEKS to be green
+                                        // while the second E in LEEKS to be red so the user will not think that there are two 'E's in play
+
+                                        //thus we check if the word the user has input has more than one of the letter and if the
+                                        // correct answer only has one of that same letter
+                                        if (validateWord(word, wordArr[i]) && !validateWord(answer, wordArr[i])){
+                                            const letter = wordArr[i];
+                                            let letterInPlace = false;
+
+                                            // console.log('word:', word, 'wordArr[i]', wordArr[i]);
+                                            //first loop through the word and see if the answer and input have the same letter at same index
+                                            // if so, set letterInPlace to true
+                                            for (let i = 0; i < wordArr.length; i++){
+                                                if(wordArr[i] === letter && answerArr[i] === letter){
+                                                    setLayout((board) => {
+                                                        board[row][i][1] = 'Correct';
+                                                        return board;
+                                                    })
+                                                    letterInPlace = true;
+                                                    break;
+                                                } else if (wordArr[i] === letter) {
+                                                    setLayout((board) => {
+                                                        board[row][i][1] = 'Present';
+                                                        return board;
+                                                    })
+                                                }
+                                            }
+
+                                            //if letterInPlace is true, then go through the input and set all positions having
+                                            // the letter to wrong
+                                            if(letterInPlace){
+                                                for (let i = 0; i < wordArr.length; i++){
+                                                     if (wordArr[i] === letter && answerArr[i] !== letter) {
+                                                        setLayout((board) => {
+                                                            board[row][i][1] = 'Wrong';
+                                                            return board;
+                                                        })
+                                                    }
+                                                }
+                                            }
+                                        }
                                         setLayout((board) => {
-                                            board[row][i][1] = 'Present';
+                                            if(board[row][i][1] === ''){
+                                                board[row][i][1] = 'Present';
+                                            }
                                             return board;
                                         })
                                     } else {
                                         setLayout((board) => {
-                                            board[row][i][1] = 'Wrong';
+                                            if (board[row][i][1] === ''){
+                                                board[row][i][1] = 'Wrong';
+                                            }
                                             return board;
                                         })
                                     }
                                 }
                                 if (row === 5) {
-                                    setLose(true);
+                                    setDone(true);
                                     setTimeout(() => {
-                                        setResult('You Lost!');
+                                        setResult('L + RATIO!');
                                         setModalMessage(`Correct word was: ${answer}!`);
                                         setOpenEndModal(true);
-                                    }, 800);
+                                    }, 600);
                                 }
-                                console.log('board:', layout);
+                                // console.log('board:', layout);
                                 setRow(row + 1);
                                 setCol(0);
                                 setWord("");
                             }
                         }
                         else {
-                            console.log('Word entered not in word list')
+                            // console.log('Word entered not in word list')
                             setError('Word not in wordlist!');
                             setVisible(true);
                         }
@@ -163,7 +202,7 @@ const LayoutLogic = (props) => {
                         if(col < 5){
                             board[row][col][0] = props.letter;
                             setWord(word += board[row][col][0]);
-                            console.log(word);
+                            // console.log(word);
                             setCol(col+1);
                         }
                         return board;
@@ -183,7 +222,7 @@ const LayoutLogic = (props) => {
                     return (
                         <div className='flex gap-1 w-fit' key={key}>
                             {row.map((value, key) => (
-                                <Layout value={value[0]} eval={value[1]} key={key}/>
+                                <Layout value={value[0]} eval={value[1]} index={key}/>
                             ))}
                         </div>
                     )
@@ -200,3 +239,68 @@ const LayoutLogic = (props) => {
 }
 
 export default LayoutLogic;
+
+/**
+ *
+ *     :host {
+ *       display: block;
+ *     }
+ *     :host([invalid]){
+ *       animation-name: Shake;
+ *       animation-duration: 600ms;
+ *     }
+ *     .row {
+ *       display: grid;
+ *       grid-template-columns: repeat(5, 1fr);
+ *       grid-gap: 5px;
+ *     }
+ *     .win {
+ *       animation-name: Bounce;
+ *       animation-duration: 1000ms;
+ *     }
+ *
+ *     @keyframes Bounce {
+ *       0%, 20% {
+ *         transform: translateY(0);
+ *       }
+ *       40% {
+ *         transform: translateY(-30px);
+ *       }
+ *       50% {
+ *         transform: translateY(5px);
+ *       }
+ *       60% {
+ *         transform: translateY(-15px);
+ *       }
+ *       80% {
+ *         transform: translateY(2px);
+ *       }
+ *       100% {
+ *         transform: translateY(0);
+ *       }
+ *     }
+ *
+ *     @keyframes Shake {
+ *       10%,
+ *       90% {
+ *         transform: translateX(-1px);
+ *       }
+ *
+ *       20%,
+ *       80% {
+ *         transform: translateX(2px);
+ *       }
+ *
+ *       30%,
+ *       50%,
+ *       70% {
+ *         transform: translateX(-4px);
+ *       }
+ *
+ *       40%,
+ *       60% {
+ *         transform: translateX(4px);
+ *       }
+ *     }
+ *
+ */
