@@ -9,12 +9,13 @@ The content below is an example project proposal / requirements document. Replac
 
 ## Overview
 
-Yep, you guessed it (haha get it?), the main focus of my project is a word guessing game. However, I am still unsure as to what the specifics are. Currently, I am thinking of two possibilities.
-The first one is some flashcard game where the game prompts the user with a definition of some word in the database, then the user has to guess that word based on the given definition.
-The other possibility is something similar to wordle, where the game consists of a 5 x 6 array where the user has 6 attempts to guess a 5-letter word.
+Yep, you guessed it (haha get it?), the main focus of my project is a word guessing game. 
+The game will be similar to wordle (practically a clone), 
+where the game consists of a 5 x 6 array and the user has 6 attempts to guess a 5-letter word.
 
-Regardless of the specifics of the game, the app "Guess the Word" functions as a game where users have to guess the correct word chosen by the game. 
-Users can register and once they log in, they can add and remove words from the game given that they fulfill the requirements (for example in the wordle possibility, newly added words must be 5-letters).
+This app functions as a game where users have to guess the correct word chosen by the game. 
+Users can register and once they log in, they can add and remove words from the game given 
+that they fulfill the requirements (for example newly added words must be 5-letters).
 
 ## Data Model
 
@@ -32,22 +33,12 @@ An Example User:
 }
 ```
 
-An Example Word (in a Wordle-like game):
+An Example Word:
 
 ```javascript
 {
   user: // a reference to a User object only filled if it is a user-added word, otherwise will be filled with 'default',
   text: "VIVID",
-}
-```
-
-An Example Word (in a flash-card-like game):
-
-```javascript
-{
-  user: // a reference to a User object only filled if it is a user-added word, otherwise will be filled with 'default',
-  text: "VIVID",
-  def: 'producing powerful feelings or strong, clear images in the mind', //definition of the word
 }
 ```
 
@@ -56,23 +47,14 @@ An Example Word (in a flash-card-like game):
 
 ## Wireframes
 
-'/home' welcome page with navbar leading to 'game' and 'words'
+'/' the home page which goes directly to the game
 
-![home](documentation/home.jpeg)
+![home](documentation/home.png)
 
-/home/words - page for showing all words in game
+/wordlist - page for showing all words that can be possible solutions in the game
 
-![words](documentation/words.jpeg)
+![words](documentation/wordlist.png)
 
-/home/game - page for the game
-
-1) flashcard-game
-
-![flashcard-game](documentation/flashcardgame.jpeg)
-
-2) wordle-game
-
-![wordle-game](documentation/wordlegame.jpeg)
 
 ## Site map
 
@@ -94,10 +76,10 @@ Subject to change
     * I plan on using passport for user authentication
 * (2 points) Use a CSS framework
     * Will either use Bootstrap or Tailwind.css to prettify the game / app
-* (5 points) Reactjs
-    * Used Reactjs as the frontend framework; I've assigned it 5 pts since I've heard that it is challenging
+* (6 points) Reactjs
+    * Used Reactjs as the frontend framework; I've assigned it 6 pts since I've been doing a lot more research than I expected initially.
 
-12 points total out of 8 required points
+13 points total out of 8 required points
 
 
 ## [Link to Initial Main Project File](backend/server.js) 
@@ -124,4 +106,6 @@ As the project goes on I will likely add and remove items from this list
    1. [EndGameModal.jsx](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/16e5ce982f700ea54a7a6ab0d9a974a5d6a1364e/frontend/src/components/EndGameModal.jsx#L6-L24)
 7. [user input validation for word](https://stackoverflow.com/questions/3073176/javascript-regex-only-english-letters-allowed)
    1. [in words.jsx](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/052f81edba6ad9ec27abdd5c247ef7e0818ea58e/frontend/src/pages/Words.jsx#L11-L14)
+8. [tailwind css animations](https://tailwindcss.com/docs/animation#customizing-your-theme)
+   1. [in tailwind config file]()
 
