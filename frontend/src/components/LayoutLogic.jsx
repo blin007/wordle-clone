@@ -269,7 +269,7 @@ const LayoutLogic = (props) => {
                                     return keyWord;
                                 })
 
-                                setEnterPress(enterPress+1);
+                                setEnterPress(e => e+1);
 
                                 console.log('keyword at end', keyWord);
                                 if (row === 5) {
