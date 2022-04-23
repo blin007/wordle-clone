@@ -268,6 +268,7 @@ const LayoutLogic = (props) => {
                                     }
                                     return keyWord;
                                 })
+
                                 setEnterPress(enterPress+1);
 
                                 console.log('keyword at end', keyWord);
@@ -283,6 +284,9 @@ const LayoutLogic = (props) => {
                                 setRow(row + 1);
                                 setCol(0);
                                 setWord("");
+                                setTimeout(()=>{
+                                    setKeyWord([]);
+                                },1000);
                             }
                         }
                         else {
