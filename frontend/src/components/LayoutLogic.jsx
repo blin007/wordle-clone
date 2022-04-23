@@ -85,14 +85,12 @@ const LayoutLogic = (props) => {
                     setVisible(false);
                 } else if (props.letter === "Enter"){
                     if (col < 5){
-                        // console.log('Word must be 5 letters!')
                         setError('Word must be 5 letters!');
                         setVisible(true);
                         setTimeout(() =>{
                             setVisible(false);
-                        }, 500);
+                        }, 1000);
                     } else {
-                        // console.log('row:',row);
                         const answerArr = answer.split('');
                         const wordArr = word.split('');
 
@@ -157,14 +155,6 @@ const LayoutLogic = (props) => {
                                                         board[row][i][1] = 'Correct';
                                                         return board;
                                                     });
-                                                    // setKeyWord((keyword) => {
-                                                    //     if(keyword[i] === undefined){
-                                                    //         keyword.push(['','']);
-                                                    //     }
-                                                    //     keyword[i][0] = wordArr[i];
-                                                    //     keyword[i][1] = 'Correct';
-                                                    //     return keyword;
-                                                    // });
 
                                                     letterInPlace = true;
                                                     break;
@@ -176,29 +166,12 @@ const LayoutLogic = (props) => {
                                                             board[row][i][1] = 'Wrong';
                                                             return board;
                                                         });
-                                                        // setKeyWord((keyword) => {
-                                                        //     if(keyword[i] === undefined){
-                                                        //         keyword.push(['','']);
-                                                        //     }
-                                                        //     keyword[i][0] = wordArr[i];
-                                                        //     keyword[i][1] = 'Wrong';
-                                                        //     return keyword;
-                                                        // });
 
                                                     } else {
                                                         setLayout((board) => {
                                                             board[row][i][1] = 'Present';
                                                             return board;
                                                         })
-                                                        // setKeyWord((keyword) => {
-                                                        //     if(keyword[i] === undefined){
-                                                        //         keyword.push(['','']);
-                                                        //     }
-                                                        //     keyword[i][0] = wordArr[i];
-                                                        //     keyword[i][1] = 'Present';
-                                                        //     return keyword;
-                                                        // });
-
                                                     }
                                                     letterPresent = true;
                                                 }
@@ -213,15 +186,6 @@ const LayoutLogic = (props) => {
                                                             board[row][i][1] = 'Wrong';
                                                             return board;
                                                         });
-                                                         // setKeyWord((keyword) => {
-                                                         //     if(keyword[i]===undefined){
-                                                         //         keyword.push(['','']);
-                                                         //     }
-                                                         //     keyword[i][0] = wordArr[i];
-                                                         //     keyword[i][1] = 'Wrong';
-                                                         //     return keyword;
-                                                         // });
-
                                                     }
                                                 }
                                             }
@@ -232,14 +196,6 @@ const LayoutLogic = (props) => {
                                             }
                                             return board;
                                         })
-                                        // setKeyWord((keyword) => {
-                                        //     if(keyword[i] === undefined){
-                                        //         keyword.push(['','']);
-                                        //     }
-                                        //     keyword[i][0] = wordArr[i];
-                                        //     keyword[i][1] ='Present';
-                                        //     return keyword;
-                                        // })
 
                                     } else {
                                         setLayout((board) => {
@@ -248,16 +204,6 @@ const LayoutLogic = (props) => {
                                             }
                                             return board;
                                         })
-                                        // setKeyWord((keyword) => {
-                                        //     console.log('keyword[i]', keyword[i]);
-                                        //     if(keyword[i] === undefined){
-                                        //         keyword.push(['','']);
-                                        //     }
-                                        //     keyword[i][0] = wordArr[i];
-                                        //     keyword[i][1] = 'Wrong';
-                                        //     return keyword;
-                                        // })
-
                                     }
                                 }
                                 console.log('keyword at end', keyWord);
@@ -332,6 +278,7 @@ const LayoutLogic = (props) => {
             {visible && <div className='text-center text-bold text-3xl p-2'>
                 {error}
             </div>}
+            <br/>
             <Keyboard keyword={keyWord} enterPress={enterPress}/>
         </>
     )

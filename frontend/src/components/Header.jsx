@@ -8,7 +8,7 @@ const Header = ( ) =>{
 
     return (
         <>
-            <header className=' navbar flex w-full justify-between py-10 px-0 mb-2 border-b-2 border-black-700 '>
+            <header className=' navbar flex w-full justify-between py-2 px-0 mb-2 border-b-2 border-black-700 '>
                 <div className='flex justify-center items-center ml-10'>
                     {/*restart game */}
                     <Link className='hover:text-cyan-600' to='/' onClick={() => window.location.href='/'}>Game</Link>
