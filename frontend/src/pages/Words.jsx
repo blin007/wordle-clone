@@ -118,6 +118,7 @@ const Words = () => {
             </div>
             {error && <div className='flex justify-center items-center text-2xl font-bold'>{message}</div>}
             <table className='grid grid-cols-8 gap-2 mt-2'>
+                {/*HOF*/}
                 {words.map((word,key) => {
                     return (
                         <tbody>

@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import Layout from "./Layout";
 import EndGameModal from "./EndGameModal";
 import WordOptions from "../wordOptions";
+import Keyboard from "./Keyboard";
 
 //declare some global variables
 const letters = ['a','b','c','d','e','f','g','h','i','j','k',
@@ -50,9 +51,14 @@ const LayoutLogic = (props) => {
     const [error, setError] = useState('');
     const [visible, setVisible] = useState(false);
 
+    //keep track of word and state to send to keyboard component
+    const [keyWord, setKeyWord] = useState([]);
+    const [enterPress, setEnterPress] = useState(0);
+
     const answer = props.answer;
 
     //check if word has more than one of the same letter in it
+    //This regex should check if the word has duplicate char
     const validateWord = (word, char) => {
         let re = new RegExp(`(${char}).*\\1`);
         return re.test(word);
@@ -82,6 +88,9 @@ const LayoutLogic = (props) => {
                         // console.log('Word must be 5 letters!')
                         setError('Word must be 5 letters!');
                         setVisible(true);
+                        setTimeout(() =>{
+                            setVisible(false);
+                        }, 500);
                     } else {
                         // console.log('row:',row);
                         const answerArr = answer.split('');
@@ -96,6 +105,7 @@ const LayoutLogic = (props) => {
                                         return board;
                                     })
                                 }
+                                //move to the next row and end the game
                                 setRow(row + 1);
                                 setCol(0);
                                 setWord("");
@@ -108,13 +118,21 @@ const LayoutLogic = (props) => {
                             } else {
                                 for (let i = 0; i < wordArr.length; i++) {
                                     if (wordArr[i] === answerArr[i]) {
-
                                         setLayout((board) => {
                                             if(board[row][i][1] === ''){
                                                 board[row][i][1] = 'Correct';
                                             }
                                             return board;
                                         })
+                                        // setKeyWord((keyword) => {
+                                        //     if(keyword[i] === undefined){
+                                        //         keyword.push(['','']);
+                                        //     }
+                                        //     keyword[i][0] = wordArr[i];
+                                        //     keyword[i][1] = 'Correct';
+                                        //     return keyword;
+                                        // })
+
                                     } else if (answerArr.includes(wordArr[i])) {
                                         //we need to check if the word that the user input has more than one of the same letter, and
                                         // whether the correct word has more than one of the same letter
@@ -127,8 +145,10 @@ const LayoutLogic = (props) => {
                                         if (validateWord(word, wordArr[i]) && !validateWord(answer, wordArr[i])){
                                             const letter = wordArr[i];
                                             let letterInPlace = false;
+                                            let letterPresent = false;
 
-                                            // console.log('word:', word, 'wordArr[i]', wordArr[i]);
+                                            console.log('letter', letter)
+                                            console.log('word:', word, 'wordArr[i]', wordArr[i]);
                                             //first loop through the word and see if the answer and input have the same letter at same index
                                             // if so, set letterInPlace to true
                                             for (let i = 0; i < wordArr.length; i++){
@@ -136,14 +156,51 @@ const LayoutLogic = (props) => {
                                                     setLayout((board) => {
                                                         board[row][i][1] = 'Correct';
                                                         return board;
-                                                    })
+                                                    });
+                                                    // setKeyWord((keyword) => {
+                                                    //     if(keyword[i] === undefined){
+                                                    //         keyword.push(['','']);
+                                                    //     }
+                                                    //     keyword[i][0] = wordArr[i];
+                                                    //     keyword[i][1] = 'Correct';
+                                                    //     return keyword;
+                                                    // });
+
                                                     letterInPlace = true;
                                                     break;
                                                 } else if (wordArr[i] === letter) {
-                                                    setLayout((board) => {
-                                                        board[row][i][1] = 'Present';
-                                                        return board;
-                                                    })
+                                                    //if there is only one instance of the letter in the answer, make sure the other
+                                                    // tiles containing that letter appear as wrong
+                                                    if(letterPresent){
+                                                        setLayout((board) => {
+                                                            board[row][i][1] = 'Wrong';
+                                                            return board;
+                                                        });
+                                                        // setKeyWord((keyword) => {
+                                                        //     if(keyword[i] === undefined){
+                                                        //         keyword.push(['','']);
+                                                        //     }
+                                                        //     keyword[i][0] = wordArr[i];
+                                                        //     keyword[i][1] = 'Wrong';
+                                                        //     return keyword;
+                                                        // });
+
+                                                    } else {
+                                                        setLayout((board) => {
+                                                            board[row][i][1] = 'Present';
+                                                            return board;
+                                                        })
+                                                        // setKeyWord((keyword) => {
+                                                        //     if(keyword[i] === undefined){
+                                                        //         keyword.push(['','']);
+                                                        //     }
+                                                        //     keyword[i][0] = wordArr[i];
+                                                        //     keyword[i][1] = 'Present';
+                                                        //     return keyword;
+                                                        // });
+
+                                                    }
+                                                    letterPresent = true;
                                                 }
                                             }
 
@@ -155,7 +212,16 @@ const LayoutLogic = (props) => {
                                                         setLayout((board) => {
                                                             board[row][i][1] = 'Wrong';
                                                             return board;
-                                                        })
+                                                        });
+                                                         // setKeyWord((keyword) => {
+                                                         //     if(keyword[i]===undefined){
+                                                         //         keyword.push(['','']);
+                                                         //     }
+                                                         //     keyword[i][0] = wordArr[i];
+                                                         //     keyword[i][1] = 'Wrong';
+                                                         //     return keyword;
+                                                         // });
+
                                                     }
                                                 }
                                             }
@@ -166,6 +232,15 @@ const LayoutLogic = (props) => {
                                             }
                                             return board;
                                         })
+                                        // setKeyWord((keyword) => {
+                                        //     if(keyword[i] === undefined){
+                                        //         keyword.push(['','']);
+                                        //     }
+                                        //     keyword[i][0] = wordArr[i];
+                                        //     keyword[i][1] ='Present';
+                                        //     return keyword;
+                                        // })
+
                                     } else {
                                         setLayout((board) => {
                                             if (board[row][i][1] === ''){
@@ -173,8 +248,29 @@ const LayoutLogic = (props) => {
                                             }
                                             return board;
                                         })
+                                        // setKeyWord((keyword) => {
+                                        //     console.log('keyword[i]', keyword[i]);
+                                        //     if(keyword[i] === undefined){
+                                        //         keyword.push(['','']);
+                                        //     }
+                                        //     keyword[i][0] = wordArr[i];
+                                        //     keyword[i][1] = 'Wrong';
+                                        //     return keyword;
+                                        // })
+
                                     }
                                 }
+                                console.log('keyword at end', keyWord);
+
+                                setKeyWord((keyWord) =>{
+                                    if(keyWord[0] === undefined){
+                                        keyWord = layout[row];
+                                    }
+                                    return keyWord;
+                                })
+                                setEnterPress(enterPress+1);
+
+                                console.log('keyword at end', keyWord);
                                 if (row === 5) {
                                     setDone(true);
                                     setTimeout(() => {
@@ -198,11 +294,10 @@ const LayoutLogic = (props) => {
                     }
                 } else if (letters.includes(props.letter.toLowerCase())){
                     setLayout((board)=>{
-                        //first check if this is the last col
+                        //Check if this is the last col
                         if(col < 5){
                             board[row][col][0] = props.letter;
                             setWord(word += board[row][col][0]);
-                            // console.log(word);
                             setCol(col+1);
                         }
                         return board;
@@ -218,6 +313,7 @@ const LayoutLogic = (props) => {
             {/*open the endgame modal only if openEndModal is set to true*/}
             {openEndModal && <EndGameModal result={result} message={modalMessage} close={setOpenEndModal}/>}
             <div className="grid gap-1 w-full justify-center py-4">
+                {/*HOF*/}
                 {layout.map((row, key) => {
                     return (
                         <div className='flex gap-1 w-fit' key={key}>
@@ -229,11 +325,10 @@ const LayoutLogic = (props) => {
                 })}
 
             </div>
-            <div className={`text-center text-bold text-3xl p-2 ${visible ? 'visible' : 'invisible'}`}>
+            {visible && <div className='text-center text-bold text-3xl p-2'>
                 {error}
-            </div>
-
-
+            </div>}
+            <Keyboard keyword={keyWord} enterPress={enterPress}/>
         </>
     )
 }

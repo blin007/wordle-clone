@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 
 const Layout = (props) => {
     const [bg, setBg] = useState('bg-white text-black');
-    //add css to manipulate background of board box when props.eval is correct, present, or wrong
+
     useEffect(()=>{
         setTimeout(()=>{
             if(props.eval === 'Correct'){

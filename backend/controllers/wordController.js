@@ -28,10 +28,6 @@ const addWords = async (req, res) => {
 };
 
 const delWord = async (req, res) => {
-    // if(!req.body.text){
-    //     res.status(400);
-    //     throw new Error('Something went wrong');
-    // }
 
     Word.countDocuments({}, async(err,count) => {
         if (count >= 10){

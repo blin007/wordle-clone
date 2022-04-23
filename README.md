@@ -43,7 +43,7 @@ An Example Word:
 ```
 
 
-## [Link to Commented First Draft Schema](backend/config/db.js)
+## [Link to Commented First Draft Schema](backend/models)
 
 ## Wireframes
 
@@ -60,13 +60,12 @@ An Example Word:
 
 ![site-map](documentation/Site map.jpeg)
 
-## User Stories or Use Cases
+## User Stories 
 
-1. as non-registered user, I can register a new account with the site
-2. as a user, I can log in to the site
-3. as a user, I can add words to the game
-4. as a user or nonuser, I can view all the words that can be used in the game
-5. as a user or nonuser, I can play the game
+1. as a user, I can add words to the game as long as it contains 5 letters
+2. as a user, I can delete words from the game, only when there are 10 or more words in the DB
+3. as a user, I can view all the words that can be possible solutions to the game
+4. as a user, I can play the game
 
 ## Research Topics
 
