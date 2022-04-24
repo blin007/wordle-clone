@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
 import Header from "./components/Header";
 import Words from "./pages/Words";
 import Game from "./pages/Game";
@@ -13,8 +11,6 @@ const App = () => {
             <Header/>
             <Routes>
               <Route path='/' element={<Game/>}/>
-              <Route path='/login' element={<Login/>}/>
-              <Route path='/register' element={<Register/>}/>
               <Route path='/wordlist' element={<Words/>}/>
             </Routes>
           </div>

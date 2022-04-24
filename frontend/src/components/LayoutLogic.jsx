@@ -122,15 +122,6 @@ const LayoutLogic = (props) => {
                                             }
                                             return board;
                                         })
-                                        // setKeyWord((keyword) => {
-                                        //     if(keyword[i] === undefined){
-                                        //         keyword.push(['','']);
-                                        //     }
-                                        //     keyword[i][0] = wordArr[i];
-                                        //     keyword[i][1] = 'Correct';
-                                        //     return keyword;
-                                        // })
-
                                     } else if (answerArr.includes(wordArr[i])) {
                                         //we need to check if the word that the user input has more than one of the same letter, and
                                         // whether the correct word has more than one of the same letter
@@ -208,16 +199,16 @@ const LayoutLogic = (props) => {
                                 }
                                 console.log('keyword at end', keyWord);
 
+                                //set the word and state of each letter in word to keyWord so that this prop var can be sent to KeyBoard component
                                 setKeyWord((keyWord) =>{
                                     if(keyWord[0] === undefined){
                                         keyWord = layout[row];
                                     }
                                     return keyWord;
                                 })
-
+                                //Enter has been pressed so update state
                                 setEnterPress(e => e+1);
 
-                                console.log('keyword at end', keyWord);
                                 if (row === 5) {
                                     setDone(true);
                                     setTimeout(() => {
@@ -236,7 +227,6 @@ const LayoutLogic = (props) => {
                             }
                         }
                         else {
-                            // console.log('Word entered not in word list')
                             setError('Word not in wordlist!');
                             setVisible(true);
                         }
@@ -247,6 +237,7 @@ const LayoutLogic = (props) => {
                         //Check if this is the last col
                         if(col < 5){
                             board[row][col][0] = props.letter;
+                            //probably a bad way of using state but not sure how to go around it other than this
                             setWord(word += board[row][col][0]);
                             setCol(col+1);
                         }
@@ -263,12 +254,12 @@ const LayoutLogic = (props) => {
             {/*open the endgame modal only if openEndModal is set to true*/}
             {openEndModal && <EndGameModal result={result} message={modalMessage} close={setOpenEndModal}/>}
             <div className="grid gap-1 w-full justify-center py-4">
-                {/*HOF*/}
+                {/*MAP*/}
                 {layout.map((row, key) => {
                     return (
                         <div className='flex gap-1 w-fit' key={key}>
                             {row.map((value, key) => (
-                                <Layout value={value[0]} eval={value[1]} index={key}/>
+                                <Layout value={value[0]} eval={value[1]} index={key} key={key}/>
                             ))}
                         </div>
                     )

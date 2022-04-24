@@ -2,10 +2,7 @@ const express = require('express');
 const connectDB= require('./config/db');
 const path = require('path');
 require('dotenv').config();
-require('./auth');
 const cors = require('cors');
-const passport = require('passport');
-const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -22,25 +19,6 @@ app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true
 }));
-
-app.use(cookieParser(process.env.SESSION_SECRET));
-
-// enable sessions
-const session = require('express-session');
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true
-}));
-
-// passport setup
-app.use(passport.initialize());
-app.use(passport.session());
-
-// route set up below
-const userRoutes = require('./routes/userRoutes');
-// /users/register ... /users/login ... /users/mywords
-app.use('/users', userRoutes);
 
 //will also have wordRoutes for /words/list and /words/add
 const wordRoutes = require('./routes/wordRoutes');

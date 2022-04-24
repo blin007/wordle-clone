@@ -39,39 +39,45 @@ const Keyboard = (props) => {
     const [keysBot, setKeysBot] = useState(keyboardBottom);
 
     useEffect(()=>{
-        console.log('props.keyword in KeyBoard component:', props.keyword);
+        // console.log('props.keyword in KeyBoard component:', props.keyword);
         for(let i=0; i<props.keyword.length; i++){
             if(topKeys.includes(props.keyword[i][0])){
                 for(let j =0; j < keyboardTop.length; j++){
                     if(keyboardTop[j][0].toLowerCase()  === props.keyword[i][0].toLowerCase() ){
-                        setKeysTop((keyTop)=>{
-                            keyTop[j][1] = props.keyword[i][1];
-                            return keyTop;
-                        })
-                        // keyboardTop[j][1] = props.keyword[i][1];
                         // console.log('keyboardtop',keyboardTop[j]);
+                        //only update state of keyboard if there was no state, or the state was wrong, or if the state was set to present and the
+                        // state can be updated to Correct
+                        // we do not want to update the state of the keyboard when the state is already set to Correct
+                        if ((keysTop[j][1]==='' || keysTop[j][1]==='Wrong') ||(keysTop[j][1]==='Present' && props.keyword[i][1]==='Correct')) {
+                            setKeysTop((keyTop) => {
+                                keyTop[j][1] = props.keyword[i][1];
+                                return keyTop;
+                            })
+                        }
                     }
                 }
             } else if (midKeys.includes(props.keyword[i][0])) {
                 for(let j =0; j < keyboardMiddle.length; j++){
                     if(keyboardMiddle[j][0].toLowerCase()  === props.keyword[i][0].toLowerCase() ){
-                        setKeysMid((keyMid)=>{
-                            keyMid[j][1] = props.keyword[i][1];
-                            return keyMid;
-                        })
-                        // keyboardMiddle[j][1] = props.keyword[i][1];
                         // console.log('keyboardmid', keyboardMiddle[j]);
+                        if ((keysMid[j][1]==='' || keysMid[j][1]==='Wrong') ||(keysMid[j][1]==='Present' && props.keyword[i][1]==='Correct')) {
+                            setKeysMid((keyMid) => {
+                                keyMid[j][1] = props.keyword[i][1];
+                                return keyMid;
+                            })
+                        }
                     }
                 }
             } else if (botKeys.includes(props.keyword[i][0])) {
                 for(let j =0; j < keyboardBottom.length; j++){
                     if(keyboardBottom[j][0].toLowerCase() === props.keyword[i][0].toLowerCase() ){
-                        setKeysBot((keyBot)=>{
-                            keyBot[j][1] = props.keyword[i][1];
-                            return keyBot;
-                        })
-                        // keyboardBottom[j][1] = props.keyword[i][1];
                         // console.log('keyboardbot', keyboardBottom[j]);
+                        if ((keysBot[j][1]==='' || keysBot[j][1]==='Wrong') ||(keysBot[j][1]==='Present' && props.keyword[i][1]==='Correct')) {
+                            setKeysBot((keyBot) => {
+                                keyBot[j][1] = props.keyword[i][1];
+                                return keyBot;
+                            })
+                        }
                     }
                 }
             }
@@ -82,10 +88,11 @@ const Keyboard = (props) => {
         <>
             <p>Letters used</p>
             <div className='flex inline-block w-full justify-center gap-1 items-center'>
+                {/*MAP*/}
                 {keysTop.map((letter, key)=>{
                     // console.log('letter', letter);
                     return (
-                        <Layout value={letter[0]} index={key} eval={letter[1]}/>
+                        <Layout value={letter[0]} index={key} eval={letter[1]} key={key}/>
                     )
                 })}
             </div>
@@ -93,7 +100,7 @@ const Keyboard = (props) => {
                 {keysMid.map((letter, key)=>{
                     // console.log('letter', letter);
                     return (
-                        <Layout value={letter[0]} index={key} eval={letter[1]}/>
+                        <Layout value={letter[0]} index={key} eval={letter[1]} key={key}/>
                     )
                 })}
             </div>
@@ -101,7 +108,7 @@ const Keyboard = (props) => {
                 {keysBot.map((letter, key)=>{
                     // console.log('letter', letter);
                     return (
-                        <Layout value={letter[0]} index={key} eval={letter[1]}/>
+                        <Layout value={letter[0]} index={key} eval={letter[1]} key={key}/>
                     )
                 })}
             </div>
