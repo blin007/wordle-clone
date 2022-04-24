@@ -71,26 +71,26 @@ Subject to change
 
 ## Annotations / References Used
 
-As the project goes on I will likely add and remove items from this list
-
 1. [reactjs tutorial](https://www.youtube.com/watch?v=w7ejDZ8SWv8)
-   1. [entirety of frontend]()
-2. [connecting react to express backend](https://www.youtube.com/watch?v=kJA9rDX7azM) 
+   1. [entirety of frontend](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/tree/2ccf3ffd1bf7239d23eb27eeed35fc761a4987b7/frontend)
+2. [tailwind docs](https://tailwindcss.com/docs/installation)
+   1. [tailwind was mostly used in the frontend components](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/tree/2ccf3ffd1bf7239d23eb27eeed35fc761a4987b7/frontend/src/components)
+3. [connecting react to express backend](https://www.youtube.com/watch?v=kJA9rDX7azM) 
    1. [use of axios](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/16e5ce982f700ea54a7a6ab0d9a974a5d6a1364e/frontend/src/pages/Words.jsx#L15-L24)
    2. [proxy in package.json file](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/16e5ce982f700ea54a7a6ab0d9a974a5d6a1364e/frontend/package.json#L5)
-3. [deploying with heroku](https://www.youtube.com/watch?v=5PaUiPyBDJY&t=747s)
+4. [deploying with heroku](https://www.youtube.com/watch?v=5PaUiPyBDJY&t=747s)
    1. [process.env.PORT](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/eaba0a8a53f6ff4cedb72676b7de789c552cf230/backend/server.js#L12)
    2. [process.env.MONGODB_URI](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/eaba0a8a53f6ff4cedb72676b7de789c552cf230/backend/config/db.js#L6)
    3. [process.env.SESSION_SECRET](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/eaba0a8a53f6ff4cedb72676b7de789c552cf230/backend/server.js#L31)
    4. [package.json scripts](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/eaba0a8a53f6ff4cedb72676b7de789c552cf230/package.json#L8-L10)
    5. [process.env.NODE_ENV](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/eaba0a8a53f6ff4cedb72676b7de789c552cf230/backend/server.js#L50-L56)
-4. [reactjs useEffect hook](https://www.youtube.com/watch?v=0ZJgIjIuY7U&list=LL&index=4&t=666s)
+5. [reactjs useEffect hook](https://www.youtube.com/watch?v=0ZJgIjIuY7U&list=LL&index=4&t=666s)
    1. [GameLogic.jsx window event listener](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/16e5ce982f700ea54a7a6ab0d9a974a5d6a1364e/frontend/src/components/GameLogic.jsx#L27-L33)
    2. [LayoutLogic.jsx](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/16e5ce982f700ea54a7a6ab0d9a974a5d6a1364e/frontend/src/components/LayoutLogic.jsx#L55-L155)
-5. [reactjs tailwind to create modal](https://www.youtube.com/watch?v=ZCvemsUfwPQ)
+6. [reactjs tailwind to create modal](https://www.youtube.com/watch?v=ZCvemsUfwPQ)
    1. [EndGameModal.jsx](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/16e5ce982f700ea54a7a6ab0d9a974a5d6a1364e/frontend/src/components/EndGameModal.jsx#L6-L24)
-6. [user input validation for word](https://stackoverflow.com/questions/3073176/javascript-regex-only-english-letters-allowed)
+7. [user input validation for word](https://stackoverflow.com/questions/3073176/javascript-regex-only-english-letters-allowed)
    1. [in words.jsx](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/052f81edba6ad9ec27abdd5c247ef7e0818ea58e/frontend/src/pages/Words.jsx#L11-L14)
-7. [tailwind css animations](https://tailwindcss.com/docs/animation#customizing-your-theme)
-   1. [in tailwind config file]()
+8. [tailwind css animations](https://tailwindcss.com/docs/animation#customizing-your-theme)
+   1. [in tailwind config file](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-blin007/blob/2ccf3ffd1bf7239d23eb27eeed35fc761a4987b7/frontend/tailwind.config.js#L5-L26)
 
