@@ -46,7 +46,7 @@ An Example Word:
 
 ## Site map
 
-![site-map](documentation/Site map.jpeg)
+![site-map](documentation/Site%20map.jpeg)
 
 ## User Stories 
 
