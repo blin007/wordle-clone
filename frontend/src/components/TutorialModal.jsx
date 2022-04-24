@@ -3,9 +3,9 @@ import Layout from "./Layout";
 const TutorialModal = (props) =>{
     return (
         <>
-            <div className='backdrop-blur-sm h-full w-full flex justify-center items-center'>
+            <div className='fixed backdrop-blur-sm h-full w-full flex ml-16 items-center'>
                 {/*Modal container*/}
-                <div className='bg-white w-11/12 h-96 flex flex-col rounded-lg shadow-xl mb-72 py-2'>
+                <div className=' bg-white w-7/12 h-96 flex flex-col rounded-lg shadow-xl mb-72 py-2'>
                     <div className='text-center py-2 font-bold text-2xl'>
                         HOW TO PLAY
                     </div>
