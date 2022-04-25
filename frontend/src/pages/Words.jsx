@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import WordOptions from "../wordOptions";
 
 const Words = () => {
     const ADD_WORD_URL = 'words/add';
@@ -28,6 +29,12 @@ const Words = () => {
         else if (!validate(word)) {
             setError(true);
             setMessage('Word cannot include numbers and symbols');
+            setAddErrorAnimation('animate-shake');
+        }
+        //check if input is a word
+        else if (!WordOptions.includes(word)){
+            setError(true);
+            setMessage(`${word} is not a valid word (not in word options list)`);
             setAddErrorAnimation('animate-shake');
         }
         else{
@@ -118,7 +125,7 @@ const Words = () => {
             </div>
             {error && <div className='flex justify-center items-center text-2xl font-bold'>{message}</div>}
             <table className='grid grid-cols-8 gap-2 mt-2'>
-                {/*HOF*/}
+                {/*MAP*/}
                 {words.map((word,key) => {
                     return (
                         <tbody>

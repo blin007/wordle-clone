@@ -50,7 +50,7 @@ An Example Word:
 
 ## User Stories 
 
-1. Anyone can add words to the game as long as it contains 5 letters
+1. Anyone can add words to the game as long as it contains 5 letters and the word is in the wordOptions.js file
 2. Anyone can delete words from the game as long as there are 10 or more words in the DB
 3. Anyone can view all the words that can be possible solutions to the game
 4. Anyone can play the game
