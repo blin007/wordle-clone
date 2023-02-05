@@ -1,6 +1,8 @@
 # Wordle Clone
 
-## VIEW DEPLOYMENT: [heroku deployment](https://wordgame-app.herokuapp.com/)
+## ~VIEW DEPLOYMENT: [heroku deployment](https://wordgame-app.herokuapp.com/)~
+## Update: Due to free tier of heroku going away, the app is no longer deployed on heroku
+
 ### APP STRUCTURE
 
 ![projectstructure](documentation/word%20app%20project%20structure.png)
